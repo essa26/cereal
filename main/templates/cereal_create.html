@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+
+{% block body %}
+
+<form action="/cereal_create/" method="POST">
+
+{% csrf_token %}
+
+{{ form.as_p }}
+
+<input type='submit' value='Save Cereal'>
+
+</form>
+
+{{ valid }}
+
+{% endblock %	}
