@@ -13,6 +13,8 @@ class Cereal(models.Model):
 	name = models.CharField(max_length=30, unique=True)
 	manufacturer = models.ForeignKey('main.Manufacturer', null=True)
 	type = models.CharField(max_length=2, null=True)
+	image = models.ImageField(upload_to="cereal", null=True)
+	info = models.TextField()
 
 	def __unicode__(self):
 		return self.name
@@ -47,7 +49,7 @@ class Nutritional_facts(models.Model):
 		value_list.append("Vitamins and Minerals: %s " % self.vitamins_and_minerals)
 		return value_list
 
-
+#changing functions will not need migrations, but model changes yes 
 
 
 	

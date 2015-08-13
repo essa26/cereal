@@ -9,6 +9,7 @@
 	<script src="{% static 'js/bootstrap.min.js' %}"></script>
 
 	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
 
 </head>
 
@@ -52,18 +53,11 @@
 
 
 		      </ul>
-		      <li>
+		     
 		      {% if not user.is_authenticated %}
 
-		      <form action="/login_view/" method="POST" class="navbar-form navbar-left" role="search">
-		        <div class="form-group">
-		        {% csrf_token %}
-		          <input type="text" class="form-control" placeholder="User Name" name="username">
-		          <input type="password" class="form-control" placeholder="pasword" name="password">
-		        
-		        </div>
-		        <button type="submit" class="btn btn-default">Submit</button>
-		      </form>
+		     
+		        <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">Login</button>
 		      {% else %}
 		      	<a class="navbar-brand" href="/logout_view/">Logout</a>
 		      {% endif %}
@@ -73,11 +67,39 @@
 						{% endif %}
 
 		     
-		        </li>
 		      </ul>
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Login</h4>
+      </div>
+      <div class="modal-body">
+       <form action="/login_view/" method="POST" class="navbar-form navbar-left" role="search">
+		        <div class="form-group">
+			        {% csrf_token %}
+			          <input type="text" class="form-control" placeholder="User Name" name="username">
+			          <input type="password" class="form-control" placeholder="pasword" name="password">
+		        </div>
+        <button type="submit" class="btn btn-default">Login</button>
+        </form>
+        <br>
+        <br>
+        <br>
+      </div>
+      <div class="modal-footer">
+      <p>Not a user? Signup! <a href="/signup/">here</a></p>
+      
+      </div>
+    </div>
+  </div>
+</div>
 
 		{{ valid }}
 	
